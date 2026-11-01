@@ -6,15 +6,15 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../img/favicon.ico" rel="shortcut icon"/>
-<title>四旋翼无人机 MuJoCo 物理仿真与神经网络建图导航 - 模拟器的 ROS 文档</title>
+<title>ROV 水下机器人 MuJoCo 建图导航与神经网络控制 - 模拟器的 ROS 文档</title>
 <link href="../../css/theme.css" rel="stylesheet"/>
 <link href="../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <link href="../../extra.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "\u56db\u65cb\u7ffc\u65e0\u4eba\u673a MuJoCo \u7269\u7406\u4eff\u771f\u4e0e\u795e\u7ecf\u7f51\u7edc\u5efa\u56fe\u5bfc\u822a";
-        var mkdocs_page_input_path = "air/aerial_mujoco_slam_nn_nav/README.md";
+        var mkdocs_page_name = "ROV \u6c34\u4e0b\u673a\u5668\u4eba MuJoCo \u5efa\u56fe\u5bfc\u822a\u4e0e\u795e\u7ecf\u7f51\u7edc\u63a7\u5236";
+        var mkdocs_page_input_path = "water/rov_mujoco_slam_nn_nav/README.md";
         var mkdocs_page_url = null;
       </script>
 <!--[if lt IE 9]>
@@ -189,130 +189,170 @@
 </ul>
 <p class="caption"><span class="caption-text">空域载具</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../mujoco_facade_capture/">MuJoCo无人机幕墙定距扫描</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/mujoco_facade_capture/">MuJoCo无人机幕墙定距扫描</a>
 </li>
 <li class="toctree-l1"><a class="reference internal">无人机任务管理与安全状态机</a>
 <ul>
-<li class="toctree-l2"><a class="reference internal" href="../uav_mission_safety_manager/overview/">模块概览</a>
+<li class="toctree-l2"><a class="reference internal" href="../../air/uav_mission_safety_manager/overview/">模块概览</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../uav_mission_safety_manager/usage/">构建与运行</a>
+<li class="toctree-l2"><a class="reference internal" href="../../air/uav_mission_safety_manager/usage/">构建与运行</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../uav_mission_safety_manager/airsim_validation/">AirSim 实测记录</a>
+<li class="toctree-l2"><a class="reference internal" href="../../air/uav_mission_safety_manager/airsim_validation/">AirSim 实测记录</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../landing_assessment/">无人机着陆阶段识别与接地载荷预测</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/landing_assessment/">无人机着陆阶段识别与接地载荷预测</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../payload_mass_estimation/">无人机载荷质量估计</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/payload_mass_estimation/">无人机载荷质量估计</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../flight_pattern_recognition/">无人机飞行轨迹类型识别与 ROS2 自动任务日志</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/flight_pattern_recognition/">无人机飞行轨迹类型识别与 ROS2 自动任务日志</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../telemetry_diagnostics/">无人机遥测异常检测与 ROS2 在线诊断</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/telemetry_diagnostics/">无人机遥测异常检测与 ROS2 在线诊断</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../setup_and_connect/">建立虚拟机和空域载具之间的连接</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/setup_and_connect/">建立虚拟机和空域载具之间的连接</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ros_pkgs/">空域模拟器的 ROS 封装器</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/ros_pkgs/">空域模拟器的 ROS 封装器</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../carlair_ros_bridge/">无人机与 ROS 的桥接模块</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/carlair_ros_bridge/">无人机与 ROS 的桥接模块</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../rooftop_landing/">无人机屋顶降落</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/rooftop_landing/">无人机屋顶降落</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../rooftop_landing_nn/">无人机屋顶降落（学习型落点选择）</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/rooftop_landing_nn/">无人机屋顶降落（学习型落点选择）</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../uav_keyboard_control/">无人机键盘控制</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/uav_keyboard_control/">无人机键盘控制</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../uav_ppo_nav/">基于 PPO 的无人机导航避障</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/uav_ppo_nav/">基于 PPO 的无人机导航避障</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../uav_rl_benchmark/">强化学习对比实验（PPO/SAC/TD3）</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/uav_rl_benchmark/">强化学习对比实验（PPO/SAC/TD3）</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../uav_neural_residual_control/">神经残差动力学与学习式轨迹跟踪</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/uav_neural_residual_control/">神经残差动力学与学习式轨迹跟踪</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../uav_route_cruise/">基于 PPO 的无人机固定路线巡航</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/uav_route_cruise/">基于 PPO 的无人机固定路线巡航</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../uav_dqn_nav/">基于 DQN 的无人机导航避障</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/uav_dqn_nav/">基于 DQN 的无人机导航避障</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../drone_teleop/">无人机终端键盘遥控器</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/drone_teleop/">无人机终端键盘遥控器</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../drone_ros_teleop/">基于 ROS 消息解耦的无人机键盘遥控</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/drone_ros_teleop/">基于 ROS 消息解耦的无人机键盘遥控</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../state_prediction/">基于 GRU 的无人机飞行状态预测与 ROS2 在线误差分析</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/state_prediction/">基于 GRU 的无人机飞行状态预测与 ROS2 在线误差分析</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../uav_mujoco_sim/">MuJoCo 四旋翼仿真与 ROS2 桥接底座</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/uav_mujoco_sim/">MuJoCo 四旋翼仿真与 ROS2 桥接底座</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../uav_formation_flight/">无人机编队飞行</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/uav_formation_flight/">无人机编队飞行</a>
 </li>
 <li class="toctree-l1"><a class="" href="https://openhutb.github.io/air_doc/airsim_tutorial_pkgs/">低空载具的 ROS 示例教程</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../ap_cpp_overfomo/">AP-CPP 主动感知覆盖路径规划</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../rflysim_sitl_first_flight/">RflySim 单机起飞（补充实验）</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/rflysim_sitl_first_flight/">RflySim 单机起飞（补充实验）</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../waypoint_tracking/">无人机航点轨迹跟踪（PID 控制）</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/waypoint_tracking/">无人机航点轨迹跟踪（PID 控制）</a>
 </li>
 <li class="toctree-l1"><a class="reference internal">空域载具八叉树三维寻路</a>
 <ul>
-<li class="toctree-l2"><a class="reference internal" href="../octree_uav_3d_pathfinding/env_setup/">环境配置与前置准备</a>
+<li class="toctree-l2"><a class="reference internal" href="../../air/octree_uav_3d_pathfinding/env_setup/">环境配置与前置准备</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../octree_uav_3d_pathfinding/flight_control/">AirSim 载具与位置控制</a>
+<li class="toctree-l2"><a class="reference internal" href="../../air/octree_uav_3d_pathfinding/flight_control/">AirSim 载具与位置控制</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../octree_uav_3d_pathfinding/occupancy_mapping/">点云转八叉树占用地图</a>
+<li class="toctree-l2"><a class="reference internal" href="../../air/octree_uav_3d_pathfinding/occupancy_mapping/">点云转八叉树占用地图</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../octree_uav_3d_pathfinding/astar_planning/">八叉树上的 A* 全局寻路</a>
+<li class="toctree-l2"><a class="reference internal" href="../../air/octree_uav_3d_pathfinding/astar_planning/">八叉树上的 A* 全局寻路</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../octree_uav_3d_pathfinding/path_smoothing/">安全裕度与路径平滑</a>
+<li class="toctree-l2"><a class="reference internal" href="../../air/octree_uav_3d_pathfinding/path_smoothing/">安全裕度与路径平滑</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../octree_uav_3d_pathfinding/path_following/">路径跟踪与闭环飞行</a>
+<li class="toctree-l2"><a class="reference internal" href="../../air/octree_uav_3d_pathfinding/path_following/">路径跟踪与闭环飞行</a>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal">YOLO 感知与无人机控制</a>
 <ul>
-<li class="toctree-l2"><a class="reference internal" href="../openhutb_yolo_mlp_control/yolo_trajectory_control/">YOLO 感知与八字轨迹控制</a>
+<li class="toctree-l2"><a class="reference internal" href="../../air/openhutb_yolo_mlp_control/yolo_trajectory_control/">YOLO 感知与八字轨迹控制</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../openhutb_yolo_mlp_control/yolo_visual_centering/">YOLO 目标水平视觉居中</a>
+<li class="toctree-l2"><a class="reference internal" href="../../air/openhutb_yolo_mlp_control/yolo_visual_centering/">YOLO 目标水平视觉居中</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../openhutb_yolo_mlp_control/traffic_tracking/">Traffic Manager 车辆轨迹与 AirSim 跟随</a>
+<li class="toctree-l2"><a class="reference internal" href="../../air/openhutb_yolo_mlp_control/traffic_tracking/">Traffic Manager 车辆轨迹与 AirSim 跟随</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../no_fly_zone_check/">禁飞区检测</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/no_fly_zone_check/">禁飞区检测</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../allocnet_teleop/">AllocNet 四旋翼避障规划与键盘遥操作</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/allocnet_teleop/">AllocNet 四旋翼避障规划与键盘遥操作</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../uav_semantic_mapping_nav/">语义分割建图与语义路径规划</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/uav_semantic_mapping_nav/">语义分割建图与语义路径规划</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../drone_trajectory_logger/">状态识别与轨迹绘制</a>
+<li class="toctree-l1"><a class="reference internal" href="../../air/drone_trajectory_logger/">状态识别与轨迹绘制</a>
 </li>
 </ul>
 <p class="caption"><span class="caption-text">水域载具</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../water/HoloOcean/">水域载具 ROS2 接口</a>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../HoloOcean/">水域载具 ROS2 接口</a>
 </li>
 <li class="toctree-l1"><a class="reference internal">环境搭建</a>
 <ul>
-<li class="toctree-l2"><a class="reference internal" href="../../water/HoloOcean-Windows-Setup/">HoloOcean Windows 本机环境搭建</a>
+<li class="toctree-l2"><a class="reference internal" href="../HoloOcean-Windows-Setup/">HoloOcean Windows 本机环境搭建</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../water/WSL_HoloOcean2_ROS2/">WSL跑通HoloOcean2的ROS2示例方法</a>
+<li class="toctree-l2"><a class="reference internal" href="../WSL_HoloOcean2_ROS2/">WSL跑通HoloOcean2的ROS2示例方法</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../water/docker/">Docker 开发环境</a>
+<li class="toctree-l2"><a class="reference internal" href="../docker/">Docker 开发环境</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../water/docker_runtime/">HoloOcean ROS2 运行时容器</a>
+<li class="toctree-l2"><a class="reference internal" href="../docker_runtime/">HoloOcean ROS2 运行时容器</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../water/holoocean_examples/">水域载具示例</a>
+<li class="toctree-l1"><a class="reference internal" href="../holoocean_examples/">水域载具示例</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../water/rov_physical_simulation/">水下机器人物理仿真与 6-DOF 键盘运动控制</a>
+<li class="toctree-l1"><a class="reference internal" href="../rov_physical_simulation/">水下机器人物理仿真与 6-DOF 键盘运动控制</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../water/rov_trajectory_tracking/">水下多传感器感知与 3D 轨迹跟踪控制</a>
+<li class="toctree-l1"><a class="reference internal" href="../rov_trajectory_tracking/">水下多传感器感知与 3D 轨迹跟踪控制</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../water/rov_sonar_slam_navigation/">水下声呐 SLAM 占据栅格建图与自主避障导航</a>
+<li class="toctree-l1"><a class="reference internal" href="../rov_sonar_slam_navigation/">水下声呐 SLAM 占据栅格建图与自主避障导航</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../water/mjc_rov_sonar_cnn/">侧扫声呐图像仿真与 CNN 海底目标分类</a>
+<li class="toctree-l1"><a class="reference internal" href="../mjc_rov_sonar_cnn/">侧扫声呐图像仿真与 CNN 海底目标分类</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../water/mjc_rov_current_teleop/">动态洋流 ROV 键盘遥操与 MLP 巡航控制</a>
+<li class="toctree-l1"><a class="reference internal" href="../mjc_rov_current_teleop/">动态洋流 ROV 键盘遥操与 MLP 巡航控制</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../water/underwater_sonar_mapping/">新增水下三维地形测绘模块</a>
+<li class="toctree-l1"><a class="reference internal" href="../underwater_sonar_mapping/">新增水下三维地形测绘模块</a>
+</li>
+<li class="toctree-l1 current"><a class="reference internal current" href="#">ROV 水下机器人 MuJoCo 建图导航与神经网络控制</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#_1">项目结构概览</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_2">一、环境准备与依赖安装</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_3">二、启动流程</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_4">三、实现要点</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#31">3.1 水动力模型</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#32">3.2 声呐与建图</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#33">3.3 神经网络</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_5">四、实验结果</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_6">五、常见报错与解决方法</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#1-modulenotfounderror-no-module-named-mujoco">1. ModuleNotFoundError: No module named 'mujoco'</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-package-rov_mujoco_slam_nn_nav-not-found">2. Package 'rov_mujoco_slam_nn_nav' not found</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-rov">3. ROV 沉底 / 浮不起来</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4">4. 键盘节点没反应</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#5-blocked">5. 导航一直 blocked</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#6-gif">6. 虚拟机里录 GIF 黑屏</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_7">六、扩展方向</a>
+</li>
+</ul>
 </li>
 </ul>
 <ul>
@@ -331,37 +371,38 @@
 <div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
 <ul class="wy-breadcrumbs">
 <li><a aria-label="Docs" class="icon icon-home" href="../.."></a></li>
-<li class="breadcrumb-item active">四旋翼无人机 MuJoCo 物理仿真与神经网络建图导航</li>
+<li class="breadcrumb-item">水域载具</li>
+<li class="breadcrumb-item active">ROV 水下机器人 MuJoCo 建图导航与神经网络控制</li>
 <li class="wy-breadcrumbs-aside">
-<a href="https://github.com/OpenHUTB/ros2/edit/master/docs/air/aerial_mujoco_slam_nn_nav/README.md"> 编辑页面</a>
+<a href="https://github.com/OpenHUTB/ros2/edit/master/docs/water/rov_mujoco_slam_nn_nav/README.md"> 编辑页面</a>
 </li>
 </ul>
 <hr/>
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<div><h1 id="mujoco">四旋翼无人机 MuJoCo 物理仿真与神经网络建图导航</h1>
-<p>在 MuJoCo 中搭建四旋翼无人机，完成<strong>物理仿真与键盘遥控</strong>、<strong>激光/深度感知与速度控制</strong>、
-<strong>建图导航与 SLAM 同步仿真</strong>、<strong>端到端深度图飞行</strong>四项任务。飞控为串级位置/姿态控制器，
-感知、规划、控制与端到端网络均为纯 NumPy 实现，通过 ROS Noetic 封装，
-<code>roslaunch aerial_mujoco_slam_nn_nav main.launch mode:=nav</code> 一键启动。</p>
-<p><img alt="无人机建图导航演示" src="../../img/air/aerial_mujoco_slam_nn_nav.gif"/></p>
+<div><h1 id="rov-mujoco">ROV 水下机器人 MuJoCo 物理仿真与神经网络建图导航</h1>
+<p>在 MuJoCo 中搭建六自由度 ROV（遥控潜水器），完成<strong>物理仿真与 6-DOF 键盘遥控</strong>、
+<strong>声呐/深度感知与轨迹控制</strong>、<strong>建图导航与 SLAM 同步仿真</strong>、<strong>端到端声呐图航行</strong>四项任务。
+浮力/阻力/推力全部显式建模，飞控为速度+姿态串级控制器；感知、规划、控制与端到端网络
+均为纯 NumPy 实现，通过 ROS Noetic 封装，<code>rostopic</code>/<code>main.py</code> 两种入口。</p>
+<p><img alt="ROV 建图导航演示" src="../../img/water/rov_mujoco_slam_nn_nav.gif"/></p>
 <h2 id="_1">项目结构概览</h2>
-<div class="highlight"><pre><span></span><code>aerial_mujoco_slam_nn_nav/
-├── aerial_mujoco_slam_nn_nav/          # 算法库
-│   ├── model.py            # MJCF：四旋翼 + 三个场景
-│   ├── flight.py           # 串级飞控（速度/高度外环 + 姿态内环）
-│   ├── sim.py              # MuJoCo 仿真内核（含 xfrc 推力注入）
-│   ├── sensors.py          # 180 线激光 / 24×32 深度 / IMU / 里程计
+<div class="highlight"><pre><span></span><code>rov_mujoco_slam_nn_nav/
+├── rov_mujoco_slam_nn_nav/             # 算法库
+│   ├── model.py            # MJCF：ROV 本体 + 三个水域场景
+│   ├── control.py          # 6-DOF 速度/姿态控制（浮力·阻力前馈）
+│   ├── sim.py              # MuJoCo 内核（xfrc 推力 + 浮力 + 阻力）
+│   ├── sensors.py          # 180 线声呐 / 24×32 深度 / IMU / 里程计
 │   ├── mapping.py          # 对数几率栅格 + 相关扫描匹配
 │   ├── planning.py         # A* + 膨胀代价地图
 │   ├── nn.py               # NumPy MLP / CNN + Adam
 │   ├── neural.py           # 四个网络的推理封装
-│   └── nav.py              # 建图导航栈（位置式前视点跟踪）
-├── scripts/                # sim / teleop / nav / e2e / metrics 五个节点
-├── launch/                 # main.launch（mode:=teleop|nav|e2e）
-├── models/                 # 4 个训练好的网络权重
-├── tools/                  # 采集、训练、评测、录 GIF
+│   └── nav.py              # 建图导航栈
+├── scripts/                # sim / teleop / nav / e2e / metrics
+├── launch/main.launch      # mode:=teleop|nav|e2e
+├── models/                 # 4 个网络权重
+├── tools/                  # 采集 / 训练 / 评测 / 录 GIF
 ├── tests/                  # 无 ROS 单元测试
 ├── main.py                 # 一键入口（不依赖 ROS）
 ├── CMakeLists.txt
@@ -378,7 +419,7 @@
 <tbody>
 <tr>
 <td>系统</td>
-<td>Ubuntu 20.04 LTS（虚拟机 / 原生）</td>
+<td>Ubuntu 20.04 LTS</td>
 </tr>
 <tr>
 <td>ROS</td>
@@ -394,67 +435,48 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="c1"># 1. 安装 MuJoCo（用户目录，不需要 sudo，不改系统 Python）</span>
-pip3<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span><span class="s2">"mujoco&gt;=3.1,&lt;3.3"</span><span class="w"> </span>numpy<span class="w"> </span>pillow
-
-<span class="c1"># 2. 编译</span>
-mkdir<span class="w"> </span>-p<span class="w"> </span>~/aerial_ws/src<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/aerial_ws
+<div class="highlight"><pre><span></span><code>pip3<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span><span class="s2">"mujoco&gt;=3.1,&lt;3.3"</span><span class="w"> </span>numpy<span class="w"> </span>pillow
+mkdir<span class="w"> </span>-p<span class="w"> </span>~/rov_ws/src<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/rov_ws
 catkin_make<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>devel/setup.bash
 </code></pre></div>
 <h2 id="_3">二、启动流程</h2>
-<p>三种方式任选：<code>main.launch</code> 一键、<code>main.py</code> 无 ROS、分终端手工起节点。</p>
-<h3 id="1-launch">1. 一键 launch</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 键盘飞行</span>
-roslaunch<span class="w"> </span>aerial_mujoco_slam_nn_nav<span class="w"> </span>main.launch<span class="w"> </span>mode:<span class="o">=</span>teleop<span class="w"> </span>scene:<span class="o">=</span>warehouse
+<div class="highlight"><pre><span></span><code><span class="c1"># 6-DOF 键盘遥控</span>
+roslaunch<span class="w"> </span>rov_mujoco_slam_nn_nav<span class="w"> </span>main.launch<span class="w"> </span>mode:<span class="o">=</span>teleop<span class="w"> </span>scene:<span class="o">=</span>pool
+
 <span class="c1"># 建图 + 导航 + SLAM 同步</span>
-roslaunch<span class="w"> </span>aerial_mujoco_slam_nn_nav<span class="w"> </span>main.launch<span class="w"> </span>mode:<span class="o">=</span>nav<span class="w"> </span>scene:<span class="o">=</span>corridor
-<span class="c1"># 端到端深度图飞行</span>
-roslaunch<span class="w"> </span>aerial_mujoco_slam_nn_nav<span class="w"> </span>main.launch<span class="w"> </span>mode:<span class="o">=</span>e2e<span class="w"> </span>scene:<span class="o">=</span>corridor
+roslaunch<span class="w"> </span>rov_mujoco_slam_nn_nav<span class="w"> </span>main.launch<span class="w"> </span>mode:<span class="o">=</span>nav<span class="w"> </span>scene:<span class="o">=</span>trench
+
+<span class="c1"># 端到端声呐图</span>
+roslaunch<span class="w"> </span>rov_mujoco_slam_nn_nav<span class="w"> </span>main.launch<span class="w"> </span>mode:<span class="o">=</span>e2e<span class="w"> </span>scene:<span class="o">=</span>trench
+
+<span class="c1"># 不依赖 ROS</span>
+python3<span class="w"> </span>main.py<span class="w"> </span>--mode<span class="w"> </span>nav<span class="w"> </span>--scene<span class="w"> </span>pipe_field
+python3<span class="w"> </span>main.py<span class="w"> </span>--mode<span class="w"> </span><span class="nb">test</span>
 </code></pre></div>
-<p>按键：<code>W/S</code> 前后、<code>A/D</code> 左右、<code>Q/E</code> 偏航、<code>R/F</code> 升降、<code>空格</code> 悬停、<code>0</code> 重置、<code>X</code> 退出。
-无图形界面时 <code>terminal:=false</code>，另开终端 <code>rosrun aerial_mujoco_slam_nn_nav teleop_node.py</code>。</p>
-<h3 id="2-ros-mainpy">2. 无 ROS 入口（main.py）</h3>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aerial_ws/src/aerial_mujoco_slam_nn_nav
-python3<span class="w"> </span>main.py<span class="w"> </span>--mode<span class="w"> </span>teleop<span class="w"> </span>--scene<span class="w"> </span>warehouse<span class="w">   </span><span class="c1"># 键盘</span>
-python3<span class="w"> </span>main.py<span class="w"> </span>--mode<span class="w"> </span>nav<span class="w"> </span>--scene<span class="w"> </span>corridor<span class="w">       </span><span class="c1"># 经典栈</span>
-python3<span class="w"> </span>main.py<span class="w"> </span>--mode<span class="w"> </span>neural<span class="w"> </span>--scene<span class="w"> </span>corridor<span class="w">    </span><span class="c1"># 神经规划+控制</span>
-python3<span class="w"> </span>main.py<span class="w"> </span>--mode<span class="w"> </span>e2e<span class="w"> </span>--scene<span class="w"> </span>corridor<span class="w">       </span><span class="c1"># 端到端</span>
-python3<span class="w"> </span>main.py<span class="w"> </span>--mode<span class="w"> </span><span class="nb">test</span><span class="w">                       </span><span class="c1"># 单元测试（4 个模块）</span>
-python3<span class="w"> </span>main.py<span class="w"> </span>--mode<span class="w"> </span>demo<span class="w"> </span>--out<span class="w"> </span>media/demo.gif<span class="w">  </span><span class="c1"># 录演示</span>
-</code></pre></div>
-<h3 id="3">3. 手工起节点（观察话题）</h3>
-<div class="highlight"><pre><span></span><code>rosrun<span class="w"> </span>aerial_mujoco_slam_nn_nav<span class="w"> </span>sim_node.py
-rosrun<span class="w"> </span>aerial_mujoco_slam_nn_nav<span class="w"> </span>nav_node.py
-rostopic<span class="w"> </span>hz<span class="w"> </span>/scan<span class="w">          </span><span class="c1"># 10 Hz</span>
-rostopic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/nav_status<span class="w">  </span><span class="c1"># fly / blocked / done</span>
-rviz<span class="w">                       </span><span class="c1"># 添加 Map(/map) 与 Path(/plan)</span>
-</code></pre></div>
+<p>按键：<code>W/S</code> 进退、<code>A/D</code> 横移、<code>R/F</code> 升沉、<code>Q/E</code> 偏航、<code>空格</code> 悬停、<code>X</code> 退出。
+无图形界面加 <code>terminal:=false</code> 后手动 <code>rosrun rov_mujoco_slam_nn_nav teleop_node.py</code>。</p>
 <h2 id="_4">三、实现要点</h2>
-<h3 id="31">3.1 四旋翼模型与推力注入</h3>
-<p>机体质量 1.2 kg、轴距 0.22 m，四个旋翼用 <code>xfrc_applied</code> 施加合力与合力矩，
-不依赖 MuJoCo 旋翼插件，控制量可以直接在文档里写清楚：</p>
+<h3 id="31">3.1 水动力模型</h3>
+<p>ROV 质量 12.9 kg、排水体积 13.2 L，净浮力约 +3 N；阻力按各轴线性+二次项建模：</p>
 <p>
 <script type="math/tex; mode=display">
-\mathbf f = R\,\hat z\,T,\qquad \boldsymbol\tau = k_R\mathbf e_R-k_\omega\boldsymbol\omega
+m\dot{\mathbf v}=\mathbf T+\mathbf B-mg\hat z-\big(c\,\mathbf v+q\,\mathbf v|\mathbf v|\big),
+\qquad \mathbf B=\rho g V
 </script>
 </p>
-<h3 id="32">3.2 串级飞控</h3>
-<p>速度/高度外环输出期望加速度，再由期望加速度反解推力方向：</p>
+<p>控制器给推力并把浮力、重力、阻力作为前馈抵消：</p>
 <p>
 <script type="math/tex; mode=display">
-\mathbf a_{des}=k_v(\mathbf v_{ref}-\mathbf v),\quad
-\mathbf f_{des}=m(\mathbf a_{des}+g\hat z),\quad
-\mathbf b_3^{des}=\frac{\mathbf f_{des}}{\|\mathbf f_{des}\|}
+\mathbf T=m k_v(\mathbf v_{ref}-\mathbf v)+\big(c\mathbf v+q\mathbf v|\mathbf v|\big)-\mathbf B+mg\hat z
 </script>
 </p>
-<p>姿态内环用几何误差 <script type="math/tex">\mathbf e_R=\frac12(R_{des}^{T}R-R^{T}R_{des})^{\vee}</script> 做 PD。
-实测：悬停 1 s 高度漂移 &lt; 6 mm；0.6 m/s 前飞 2 s 位移约 1 m。</p>
-<h3 id="33">3.3 建图与导航</h3>
-<p>2D 激光（180 线）在 1.2 m 高度扫描，对数几率栅格 + 相关扫描匹配建图，
-A* 在 0.45 m 膨胀的代价地图上规划；执行层用<strong>位置式前视点跟踪</strong>：
-把 <script type="math/tex">k(\mathbf p_{look}-\mathbf p)</script> 转成机体系速度，交给飞控。
-这样无人机可以侧移贴线，不会像"边转边冲"那样切角撞墙。</p>
-<h3 id="34">3.4 神经网络</h3>
+<p>闭环因此退化为一阶跟踪。姿态用 PD 保持水平、偏航跟踪指令。
+实测：定深 1 s 高度漂移 &lt; 0.08 m；指令 0.5 m/s 前飞 2 s 位移 0.85 m。</p>
+<h3 id="32">3.2 声呐与建图</h3>
+<p>前视声呐用 180 条射线模拟（含噪声），1.0 m 定高扫描；对数几率栅格 + 相关扫描匹配
+建图，A* 在 0.46 m 膨胀代价地图上规划；执行层把前视点误差转成机体系速度
+（ROV 可全向平移），交给 6-DOF 控制器。</p>
+<h3 id="33">3.3 神经网络</h3>
 <table>
 <thead>
 <tr>
@@ -468,14 +490,14 @@ A* 在 0.45 m 膨胀的代价地图上规划；执行层用<strong>位置式前�
 <tr>
 <td>感知</td>
 <td>MLP 9-32-32-1</td>
-<td>9 线滑窗 → 中心距离</td>
-<td>自监督（无噪扫描为标签）</td>
+<td>9 线声呐滑窗 → 中心距离</td>
+<td>自监督</td>
 </tr>
 <tr>
 <td>规划</td>
 <td>MLP 124-64-64-2</td>
 <td>11×11 局部栅格 + 目标 → 方向</td>
-<td>克隆 A* 方向</td>
+<td>克隆 A*</td>
 </tr>
 <tr>
 <td>控制</td>
@@ -489,39 +511,39 @@ A* 在 0.45 m 膨胀的代价地图上规划；执行层用<strong>位置式前�
 <td>Conv(1→8,5×5,s2)+FC</td>
 <td>24×32 深度图 → <script type="math/tex">(v_x,v_y,\omega)</script>
 </td>
-<td>走廊场景行为克隆</td>
+<td>行为克隆</td>
 </tr>
 </tbody>
 </table>
 <h2 id="_5">四、实验结果</h2>
-<p>三场景闭环（目标 0.4 m 内视为成功，单条 episode）：</p>
+<p>三场景闭环（目标 0.4 m 内成功）：</p>
 <table>
 <thead>
 <tr>
 <th>策略</th>
-<th>warehouse</th>
-<th>obstacle_field</th>
-<th>corridor</th>
+<th>pool</th>
+<th>pipe_field</th>
+<th>trench</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>经典栈（SLAM + A*）</td>
-<td>✅ 8.91 s / 0.396 m / ATE 0.019</td>
-<td>✅ 7.63 s / 0.391 m / 0.010</td>
-<td>✅ 7.22 s / 0.393 m / 0.012</td>
+<td>经典栈</td>
+<td>✅ 11.2 s / 0.392 m / ATE 0.073</td>
+<td>✅ 9.7 s / 0.390 m / 0.013</td>
+<td>✅ 9.3 s / 0.395 m / 0.015</td>
 </tr>
 <tr>
-<td>神经规划 + 控制</td>
+<td>神经规划+控制</td>
 <td>❌ 90 s 未达</td>
-<td>✅ 7.63 s / 0.391 m</td>
-<td>❌ 90 s 未达</td>
+<td>✅ 9.7 s / 0.391 m</td>
+<td>✅ 9.3 s / 0.392 m</td>
 </tr>
 <tr>
 <td>端到端 CNN</td>
-<td>❌ 11.5 s 坠机</td>
-<td>❌ 10.3 s 坠机</td>
-<td>❌ 13.7 s 坠机</td>
+<td>❌ 坠底</td>
+<td>❌ 坠底</td>
+<td>❌ 坠底</td>
 </tr>
 </tbody>
 </table>
@@ -535,49 +557,51 @@ A* 在 0.45 m 膨胀的代价地图上规划；执行层用<strong>位置式前�
 </thead>
 <tbody>
 <tr>
-<td>激光去噪</td>
-<td>RMSE 0.659 → 0.041 m</td>
+<td>声呐去噪</td>
+<td>RMSE 0.582 → 0.027 m</td>
 </tr>
 <tr>
 <td>规划方向误差</td>
-<td>3.68°（验证集）</td>
+<td>4.32°（验证集，99.4% 在 45° 内）</td>
 </tr>
 <tr>
 <td>控制器</td>
-<td>vx MAE 0.070，vy MAE 0.063，ω MAE 0.292</td>
+<td>vx MAE 0.116，vy MAE 0.039，ω MAE 0.098</td>
 </tr>
 <tr>
 <td>端到端</td>
-<td>vx MAE 0.253，vy MAE 0.090，ω MAE 0.308</td>
+<td>vx MAE 0.564（数据仅 466 帧，明显欠拟合）</td>
 </tr>
 </tbody>
 </table>
-<p><strong>失败分析</strong>：端到端网络只有 170 帧走廊数据，单帧深度图缺少时序与全局信息，
-飞出几米后就会撞门柱；神经规划在开阔场景会被"目标方向"主导，绕障能力不足。
-这也是本包保留 A* 作为安全回退、并把经典栈作为默认演示的原因。</p>
+<p><strong>失败分析</strong>：端到端网络只用单帧深度图、训练样本少，出航几米后就会撞壁；
+神经规划在 pool 这种"目标被大障碍遮挡"的场景被目标方向主导。本包保留 A* 作为
+安全回退，并把经典栈作为默认演示路径。</p>
 <h2 id="_6">五、常见报错与解决方法</h2>
 <h3 id="1-modulenotfounderror-no-module-named-mujoco">1. <code>ModuleNotFoundError: No module named 'mujoco'</code></h3>
-<p><code>pip3 install --user "mujoco&gt;=3.1,&lt;3.3"</code>，并确认 <code>python3 -c "import mujoco"</code> 通过。</p>
-<h3 id="2-package-aerial_mujoco_slam_nn_nav-not-found">2. <code>Package 'aerial_mujoco_slam_nn_nav' not found</code></h3>
-<p>没有 <code>source ~/aerial_ws/devel/setup.bash</code>，或包不在 <code>~/aerial_ws/src</code> 下。</p>
-<h3 id="3_1">3. 无人机起飞就翻</h3>
-<p>检查是否给 <code>xfrc_applied</code> 写了世界系力（本项目已按机体姿态旋转）；或
-<code>~altitude</code> 设得过低（&lt; 0.6 m）导致触地。</p>
+<p><code>pip3 install --user "mujoco&gt;=3.1,&lt;3.3"</code>，确认 <code>python3 -c "import mujoco"</code> 通过。</p>
+<h3 id="2-package-rov_mujoco_slam_nn_nav-not-found">2. <code>Package 'rov_mujoco_slam_nn_nav' not found</code></h3>
+<p>没有 <code>source ~/rov_ws/devel/setup.bash</code>。</p>
+<h3 id="3-rov">3. ROV 沉底 / 浮不起来</h3>
+<p>检查 <code>MODEL.VOLUME</code> 与质量是否匹配（净浮力应在 +2~+5 N）；<code>~depth</code> 低于 0.4 m 会触底。</p>
 <h3 id="4">4. 键盘节点没反应</h3>
-<p><code>main.launch</code> 默认用 <code>xterm</code> 启动，需要窗口焦点；SSH 下用 <code>terminal:=false</code> 后手动 <code>rosrun</code>。</p>
+<p><code>main.launch</code> 默认用 <code>xterm</code>，需要窗口焦点；SSH 场景用 <code>terminal:=false</code> 后 <code>rosrun</code>。</p>
 <h3 id="5-blocked">5. 导航一直 <code>blocked</code></h3>
-<p>地图还没建起来（起点被膨胀层包住），等 1–2 s；或把 <code>~inflation</code> 从 0.45 降到 0.30。</p>
+<p>地图未建立，等 1–2 s；或把 <code>~inflation</code> 从 0.46 降到 0.32。</p>
 <h3 id="6-gif">6. 虚拟机里录 GIF 黑屏</h3>
-<p>GIF 用 MuJoCo 离屏渲染，不需要显示器；若黑屏，确认渲染器在 <code>mj_forward</code> 之后创建
-（<code>sim.py</code> 已做延迟创建）。</p>
+<p>GIF 用 MuJoCo 离屏渲染，不需要显示器；渲染器在 <code>mj_forward</code> 之后创建（<code>sim.py</code> 已延迟）。</p>
 <h2 id="_7">六、扩展方向</h2>
 <ul>
-<li>三维导航：把 2D 栅格换成八叉树 / 体素，支持高度变化与跨楼层；</li>
-<li>端到端补数据：加入历史帧（GRU）与门柱遮挡场景，或改用 DAgger；</li>
-<li>与 AirSim 版本做跨模拟器对比（同一套策略接口）。</li>
+<li>加 DVL/多波束声呐，做 3D 建图与海底地形测绘；</li>
+<li>用洋流扰动测试控制鲁棒性（与 <code>mjc_rov_current_teleop</code> 的洋流模型对齐）；</li>
+<li>端到端补数据（历史帧 + DAgger），或改用声呐极坐标图输入。</li>
 </ul></div>
 </div>
 </div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../underwater_sonar_mapping/" title="新增水下三维地形测绘模块"><span class="icon icon-circle-arrow-left"></span> 前一页</a>
+<a class="btn btn-neutral float-right" href="../../ubuntu2004-local-llm-deploy/" title="自装ubuntu20.04本地大模型部署教程">后一页 <span class="icon icon-circle-arrow-right"></span></a>
+</div>
 <hr/>
 <div role="contentinfo">
 <!-- Copyright etc -->
@@ -593,6 +617,8 @@ A* 在 0.45 m 膨胀的代价地图上规划；执行层用<strong>位置式前�
 <span>
 <a href="https://github.com/OpenHUTB/ros2" style="color: #fcfcfc">OpenHUTB</a>
 </span>
+<span><a href="../underwater_sonar_mapping/" style="color: #fcfcfc">« 前一页</a></span>
+<span><a href="../../ubuntu2004-local-llm-deploy/" style="color: #fcfcfc">后一页 »</a></span>
 </span>
 </div>
 <script src="../../js/jquery-3.6.0.min.js"></script>
