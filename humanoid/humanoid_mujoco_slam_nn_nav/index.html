@@ -14,7 +14,7 @@
 <script>
         // Current page data
         var mkdocs_page_name = "\u4eba\u5f62\u673a\u5668\u4eba MuJoCo \u5efa\u56fe\u5bfc\u822a\u4e0e\u795e\u7ecf\u7f51\u7edc\u63a7\u5236";
-        var mkdocs_page_input_path = "humanoid/humanoid_mujoco_slam_nn_nav/README.md";
+        var mkdocs_page_input_path = "humanoid/humanoid_mujoco_slam_nn_nav.md";
         var mkdocs_page_url = null;
       </script>
 <!--[if lt IE 9]>
@@ -75,7 +75,7 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">人形机器人</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../humanoid_basics/">人形机器人基础</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../humanoid_keyboard_control/">人形机器人键盘运动控制</a>
@@ -100,70 +100,94 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../whole_body_ik/">人形机器人全身逆运动学与可操作性</a>
 </li>
+<li class="toctree-l1 current"><a class="reference internal current" href="#">人形机器人 MuJoCo 建图导航与神经网络控制</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#1">1. 项目概述</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#11">1.1 演示动图</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#2">2. 运行环境与安装</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#3">3. 系统设计</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#31">3.1 目录结构</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#32">3.2 双足模型与位置伺服</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#33">3.3 解析逆运动学</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#34">3.4 准静态步态</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#35">3.5 传感器</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#4">4. 计算原理</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#41-slam">4.1 SLAM：对数几率栅格与扫描匹配</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#42">4.2 规划与纯跟踪</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#43">4.3 四个神经网络</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#5">5. 算法流程</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#51">5.1 键盘遥控</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#52">5.2 建图导航</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#53">5.3 端到端驾驶</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#6">6. 仿真步骤（含截图）</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#61-ros">6.1 无 ROS 快速验证</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#62-ros-1">6.2 ROS 键盘遥控（任务 1）</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#63-ros-2-3">6.3 ROS 建图导航（任务 2 / 3）</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#64-ros-4">6.4 ROS 端到端驾驶（任务 4）</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#65">6.5 单元测试与批量评测</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#7">7. 多场景测试与性能评价</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#71">7.1 闭环结果</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#72">7.2 离线指标</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#73">7.3 单项性能</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#74">7.4 失败分析</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#8">8. 常见问题与限制</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#81">8.1 常见报错</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#82">8.2 已知限制与扩展方向</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">肌肉骨骼人</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../musculoskeletal/musculoskeletal_basics/">肌肉骨骼人基础</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../musculoskeletal/msk_hand_teleop/">MuJoCo肌肉骨骼灵巧手遥操作与NN控制</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../musculoskeletal/muscle_joint_control/">肌肉驱动的关节控制与 Hill 肌肉模型</a>
-</li>
-<li class="toctree-l1 current"><a class="reference internal current" href="#">人形机器人 MuJoCo 建图导航与神经网络控制</a>
-<ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="#_1">项目结构概览</a>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#_2">一、环境准备与依赖安装</a>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#_3">二、启动流程</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#1-1">1. 键盘遥控（任务 1）</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#2-slam-3">2. 建图 + 导航 + SLAM 同步（任务 3）</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#3-cnn-4">3. 端到端 CNN 视觉驾驶（任务 4）</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#4">4. 单元测试与批量评测</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#_4">三、实现要点</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#31">3.1 双足模型与位置伺服</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#32">3.2 解析逆运动学</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#33">3.3 准静态步态</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#34">3.4 传感器与感知网络</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#35-slam">3.5 SLAM 与导航</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#36">3.6 神经网络</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#_5">四、实验结果</a>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#_6">五、常见报错与解决方法</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#1-modulenotfounderror-no-module-named-mujoco">1. ModuleNotFoundError: No module named 'mujoco'</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#2-package-humanoid_mujoco_slam_nn_nav-not-found">2. Package 'humanoid_mujoco_slam_nn_nav' not found</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#3">3. 键盘窗口没反应</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#4-nav_status-settle">4. 机器人原地踏步、/nav_status 显示 settle</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#5-blocked">5. 导航一直 blocked</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#6-gif">6. 虚拟机里录 GIF 黑屏</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#_7">六、扩展方向</a>
-</li>
-</ul>
 </li>
 </ul>
 <p class="caption"><span class="caption-text">地面载具</span></p>
@@ -339,8 +363,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../air/drone_trajectory_logger/">状态识别与轨迹绘制</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../air/aerial_mujoco_slam_nn_nav/">四旋翼无人机 MuJoCo 建图导航与神经网络控制</a>
-</li>
 </ul>
 <p class="caption"><span class="caption-text">水域载具</span></p>
 <ul>
@@ -372,8 +394,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../water/underwater_sonar_mapping/">新增水下三维地形测绘模块</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../water/rov_mujoco_slam_nn_nav/">ROV 水下机器人 MuJoCo 建图导航与神经网络控制</a>
-</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../ubuntu2004-local-llm-deploy/">自装ubuntu20.04本地大模型部署教程</a>
@@ -391,10 +411,10 @@
 <div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
 <ul class="wy-breadcrumbs">
 <li><a aria-label="Docs" class="icon icon-home" href="../.."></a></li>
-<li class="breadcrumb-item">肌肉骨骼人</li>
+<li class="breadcrumb-item">人形机器人</li>
 <li class="breadcrumb-item active">人形机器人 MuJoCo 建图导航与神经网络控制</li>
 <li class="wy-breadcrumbs-aside">
-<a href="https://github.com/OpenHUTB/ros2/edit/master/docs/humanoid/humanoid_mujoco_slam_nn_nav/README.md"> 编辑页面</a>
+<a href="https://github.com/OpenHUTB/ros2/edit/master/docs/humanoid/humanoid_mujoco_slam_nn_nav.md"> 编辑页面</a>
 </li>
 </ul>
 <hr/>
@@ -402,108 +422,125 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <div><h1 id="mujoco">人形机器人 MuJoCo 物理仿真与神经网络建图导航</h1>
-<p>在 MuJoCo 中搭建 12 个驱动关节的双足人形机器人，完成<strong>物理仿真与键盘遥控</strong>、
-<strong>激光/深度感知与轨迹控制</strong>、<strong>建图导航与 SLAM 同步仿真</strong>、<strong>端到端深度图驾驶</strong>四项任务。
-感知、规划、控制与端到端网络均以纯 NumPy 实现，通过 ROS Noetic 话题封装，
-<code>roslaunch humanoid_mujoco_slam_nn_nav ...</code> 一键启动。</p>
-<p><img alt="人形机器人建图导航演示" src="../../img/humanoid/humanoid_mujoco_slam_nn_nav.gif"/></p>
-<h2 id="_1">项目结构概览</h2>
-<div class="highlight"><pre><span></span><code>humanoid_mujoco_slam_nn_nav/
-├── humanoid_mujoco_slam_nn_nav/          # 算法库
-│   ├── model.py              # MJCF 生成（机器人 + 三个场景）
-│   ├── kinematics.py         # 解析逆运动学 / 正运动学
-│   ├── gait.py               # 准静态双足步态
-│   ├── sim.py                # MuJoCo 仿真内核
-│   ├── sensors.py            # 激光 / 深度 / IMU / 里程计
-│   ├── mapping.py            # 对数几率栅格 + 扫描匹配 SLAM
-│   ├── planning.py           # A* + 膨胀代价地图 + 纯跟踪
-│   ├── nn.py                 # NumPy MLP / CNN + Adam
-│   ├── neural.py             # 四个网络的推理封装
-│   └── nav.py                # 完整导航栈
-├── scripts/                  # ROS 节点：sim / teleop / nav / e2e / metrics
-├── launch/                   # teleop、slam_nav、e2e、benchmark
-├── models/                   # 4 个训练好的网络权重（npz）
-├── tools/                    # 采集、训练、评测、GIF 录制
-├── tests/                    # 无 ROS 单元测试
-├── CMakeLists.txt
-└── package.xml
-</code></pre></div>
-<h2 id="_2">一、环境准备与依赖安装</h2>
+<h2 id="1">1. 项目概述</h2>
+<p>本项目在 <strong>MuJoCo 物理仿真器</strong>中建立了一个 12 驱动关节的双足人形机器人，
+完成课程要求的四项任务：</p>
+<ol>
+<li><strong>物理仿真 + 键盘遥控</strong>——位置伺服驱动 12 个关节，按键直接给机身速度指令；</li>
+<li><strong>传感器感知 + 给定轨迹控制</strong>——180 线激光与 24×32 深度相机全部由 <code>mj_ray</code>
+   射线求交生成，感知网络先去噪再送入控制器；</li>
+<li><strong>建图导航 + SLAM 同步仿真</strong>——对数几率占据栅格 + 相关扫描匹配 + A* + 纯跟踪；</li>
+<li><strong>端到端模型</strong>——深度图直接映射为 <script type="math/tex">(v,\omega)</script> 的 CNN，行为克隆自经典栈。</li>
+</ol>
+<p>四项任务的感知、规划、控制与端到端算法<strong>全部为神经网络</strong>（纯 NumPy 手写前向/反向传播 +
+Adam），通过 ROS Noetic 话题封装，<code>roslaunch</code> 一键启动。</p>
+<p><img alt="人形机器人建图导航" src="../../img/humanoid_mujoco_slam_nn_nav_poster.png"/></p>
+<h3 id="11">1.1 演示动图</h3>
 <table>
 <thead>
 <tr>
-<th>项目</th>
-<th>版本</th>
+<th>场景</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>系统</td>
-<td>Ubuntu 20.04 LTS（虚拟机 / 原生）</td>
+<td><img alt="键盘遥控" src="../../img/humanoid_mujoco_slam_nn_nav_teleop.gif"/></td>
+<td>键盘遥控：<code>W/S</code> 前进后退、<code>A/D</code> 转弯、<code>Q/E</code> 原地转，双足步态跟随机身速度指令</td>
 </tr>
 <tr>
-<td>ROS</td>
-<td>Noetic（Python 3.8）</td>
+<td><img alt="建图导航" src="../../img/humanoid_mujoco_slam_nn_nav.gif"/></td>
+<td>SLAM 建图 + A* 导航：边建图边规划，绕开立柱到达目标点</td>
 </tr>
 <tr>
-<td>物理引擎</td>
-<td>MuJoCo 3.x</td>
-</tr>
-<tr>
-<td>其他</td>
-<td>numpy、pillow（录制 GIF 用）</td>
+<td><img alt="端到端驾驶" src="../../img/humanoid_mujoco_slam_nn_nav_e2e.gif"/></td>
+<td>端到端 CNN：24×32 深度图 → <script type="math/tex">(v,\omega)</script>，走廊场景自主前进</td>
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="c1"># 1. 安装 MuJoCo（装在用户目录，不需要 sudo，不改系统 Python）</span>
+<h2 id="2">2. 运行环境与安装</h2>
+<table>
+<thead>
+<tr>
+<th>依赖</th>
+<th>版本</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ubuntu</td>
+<td>20.04 LTS</td>
+<td>虚拟机或原生均可</td>
+</tr>
+<tr>
+<td>ROS</td>
+<td>Noetic</td>
+<td>仅 rospy 节点，无自定义消息</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>3.8</td>
+<td>系统自带</td>
+</tr>
+<tr>
+<td>MuJoCo</td>
+<td>3.1 – 3.2</td>
+<td><code>pip3 install --user "mujoco&gt;=3.1,&lt;3.3"</code></td>
+</tr>
+<tr>
+<td>numpy / pillow</td>
+<td>-</td>
+<td><code>pip3 install --user numpy pillow</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># 全部依赖装在用户目录，不需要 sudo，也不改系统 Python</span>
 pip3<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span><span class="s2">"mujoco&gt;=3.1,&lt;3.3"</span><span class="w"> </span>numpy<span class="w"> </span>pillow
 
-<span class="c1"># 2. 编译（把本包放到 ~/humanoid_ws/src 下）</span>
-mkdir<span class="w"> </span>-p<span class="w"> </span>~/humanoid_ws/src<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/humanoid_ws
+mkdir<span class="w"> </span>-p<span class="w"> </span>~/humanoid_ws/src<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/humanoid_ws/src
+<span class="c1"># 将 humanoid_mujoco_slam_nn_nav 目录拷贝到此处</span>
+<span class="nb">cd</span><span class="w"> </span>~/humanoid_ws
 catkin_make
 <span class="nb">source</span><span class="w"> </span>devel/setup.bash
 </code></pre></div>
 <blockquote>
-<p>本包不修改 <code>.bashrc</code>、<code>/etc</code>、系统 Python 包，也不依赖 CARLA/AirSim 等大型仿真器。</p>
+<p>本包不修改 <code>.bashrc</code>、<code>/etc</code>、<code>PATH</code> 与系统 Python 包，也不依赖 CARLA/AirSim 等大型仿真器。</p>
 </blockquote>
-<h2 id="_3">二、启动流程</h2>
-<p>每个新终端都要先 <code>source /opt/ros/noetic/setup.bash &amp;&amp; source ~/humanoid_ws/devel/setup.bash</code>。</p>
-<h3 id="1-1">1. 键盘遥控（任务 1）</h3>
-<div class="highlight"><pre><span></span><code>roslaunch<span class="w"> </span>humanoid_mujoco_slam_nn_nav<span class="w"> </span>teleop.launch<span class="w"> </span>scene:<span class="o">=</span>warehouse
+<h2 id="3">3. 系统设计</h2>
+<h3 id="31">3.1 目录结构</h3>
+<div class="highlight"><pre><span></span><code>humanoid_mujoco_slam_nn_nav/
+├── humanoid_mujoco_slam_nn_nav/   # 算法库
+│   ├── model.py                  # MJCF 生成（机器人 + 三个场景）
+│   ├── kinematics.py             # 解析逆运动学 / 正运动学
+│   ├── gait.py                   # 准静态双足步态
+│   ├── sim.py                    # MuJoCo 仿真内核
+│   ├── sensors.py                # 激光 / 深度 / IMU / 里程计
+│   ├── mapping.py                # 对数几率栅格 + 扫描匹配 SLAM
+│   ├── planning.py               # A* + 膨胀代价地图 + 纯跟踪
+│   ├── nn.py                     # NumPy MLP / CNN + Adam
+│   ├── neural.py                 # 四个网络的推理封装
+│   └── nav.py                    # 完整导航栈
+├── scripts/                      # ROS 节点：sim / teleop / nav / e2e / metrics
+├── launch/                       # teleop、slam_nav、e2e、benchmark
+├── models/                       # 4 个训练好的网络权重（npz）
+├── tools/                        # 采集、训练、评测、GIF 录制
+├── tests/                        # 无 ROS 单元测试
+├── main.py / main.sh             # 一键入口
+├── CMakeLists.txt
+└── package.xml
 </code></pre></div>
-<p>弹出键盘窗口后：<code>W/S</code> 前进后退、<code>A/D</code> 左转右转、<code>Q/E</code> 原地转、<code>空格</code> 急停、<code>R</code> 重置。
-无图形界面时加 <code>terminal:=false</code>，再另开终端 <code>rosrun humanoid_mujoco_slam_nn_nav teleop_node.py</code>。</p>
-<p><img alt="键盘遥控" src="../../img/humanoid/humanoid_mujoco_slam_nn_nav_teleop.gif"/></p>
-<h3 id="2-slam-3">2. 建图 + 导航 + SLAM 同步（任务 3）</h3>
-<div class="highlight"><pre><span></span><code>roslaunch<span class="w"> </span>humanoid_mujoco_slam_nn_nav<span class="w"> </span>slam_nav.launch<span class="w"> </span>scene:<span class="o">=</span>warehouse
-<span class="c1"># 换场景：scene:=obstacle_field / corridor；换目标：goal_x:=2.0 goal_y:=0.0</span>
-</code></pre></div>
-<p>另开终端观察：</p>
-<div class="highlight"><pre><span></span><code>rostopic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/nav_status<span class="w">       </span><span class="c1"># walk / settle / blocked / done</span>
-rostopic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-n1<span class="w"> </span>/humanoid/slam_pose
-rviz<span class="w">                            </span><span class="c1"># 添加 Map(/map) 与 Path(/plan)，Fixed Frame 选 map</span>
-</code></pre></div>
-<h3 id="3-cnn-4">3. 端到端 CNN 视觉驾驶（任务 4）</h3>
-<div class="highlight"><pre><span></span><code>roslaunch<span class="w"> </span>humanoid_mujoco_slam_nn_nav<span class="w"> </span>e2e.launch<span class="w"> </span>scene:<span class="o">=</span>corridor
-</code></pre></div>
-<p><img alt="端到端驾驶" src="../../img/humanoid/humanoid_mujoco_slam_nn_nav_e2e.gif"/></p>
-<h3 id="4">4. 单元测试与批量评测</h3>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/humanoid_ws/src/humanoid_mujoco_slam_nn_nav
-<span class="nv">PYTHONPATH</span><span class="o">=</span>.<span class="w"> </span>python3<span class="w"> </span>tests/run_all.py<span class="w">       </span><span class="c1"># IK / 建图 / 规划 / 网络，4/4 通过</span>
-<span class="nv">PYTHONPATH</span><span class="o">=</span>.<span class="w"> </span>python3<span class="w"> </span>tools/evaluate.py<span class="w">      </span><span class="c1"># 三场景 × 三策略 -&gt; results/benchmark.json</span>
-</code></pre></div>
-<h2 id="_4">三、实现要点</h2>
-<h3 id="31">3.1 双足模型与位置伺服</h3>
+<h3 id="32">3.2 双足模型与位置伺服</h3>
 <p>MJCF 由 <code>model.py</code> 用代码生成（三个场景共用同一副身体）：骨盆 0.25×0.21×0.15 m / 11 kg，
-大腿小腿各 0.34 m，脚掌 0.30×0.16 m（摩擦 1.4），腿部 6 个关节由<strong>位置伺服</strong>驱动：</p>
+大腿小腿各 0.34 m，脚掌 0.30×0.16 m（摩擦 1.4）。腿部 12 个关节由<strong>位置伺服</strong>驱动：</p>
 <p>
 <script type="math/tex; mode=display">
 \tau = k_p (q^\* - q) - k_v \dot q , \qquad |\tau| \le \tau_{max}
 </script>
 </p>
-<p>其中腿部 <script type="math/tex">k_p=600</script>、<script type="math/tex">k_v=30</script>，踝关节 700/32。机器人自身几何被放入 geom group 3，
+<p>其中腿部 <script type="math/tex">k_p=600</script>、<script type="math/tex">k_v=30</script>，踝关节 700/32。机器人自身几何放在 geom group 3，
 激光雷达只与 group 0–2 求交，因此不会"看见自己"。</p>
-<h3 id="32">3.2 解析逆运动学</h3>
+<h3 id="33">3.3 解析逆运动学</h3>
 <p>给定骨盆位姿与踝关节目标，先由髋 yaw 把腿平面旋到目标朝向，再解平面二连杆：</p>
 <p>
 <script type="math/tex; mode=display">
@@ -520,7 +557,7 @@ q_{ankle}=-(q_{hip}+k),\quad q_{roll}=\arctan_2(d_y,-d_z)
 </p>
 <p>脚掌保持水平：<script type="math/tex">q_{hip}+k+q_{ankle}=0</script>。<code>tests/test_ik.py</code> 做了 300 组随机位姿往返校验，
 最大误差 &lt; 1 cm。</p>
-<h3 id="33">3.3 准静态步态</h3>
+<h3 id="34">3.4 准静态步态</h3>
 <p>一个周期 <script type="math/tex">T=1.15</script> s、单腿支撑占比 0.78、摆动脚抬升 8 cm：</p>
 <ol>
 <li><strong>双支撑</strong>：重心横移到支撑脚正上方（0.02 m）；</li>
@@ -530,33 +567,29 @@ q_{ankle}=-(q_{hip}+k),\quad q_{roll}=\arctan_2(d_y,-d_z)
 </ol>
 <p>步态输出关节角，骨盆目标取两脚目标点中点，因此重心不会跑出支撑多边形。
 实测站立 5 s 骨盆漂移 &lt; 3 mm，连续行走 60 s / 5.2 m 无跌倒。</p>
-<h3 id="34">3.4 传感器与感知网络</h3>
+<h3 id="35">3.5 传感器</h3>
 <p>激光（180 线）与深度相机（24×32）都由 <code>mj_ray</code> 逐条射线求交得到米制距离，不依赖 OpenGL，
-因此在无显卡虚拟机上数据完全一致。感知网络对 9 条相邻射线做滑窗回归：</p>
-<p>
-<script type="math/tex; mode=display">
-\mathcal L=\frac1N\sum_i\big(\hat r_i-r_i\big)^2,\qquad
-\hat r_i=f_\theta(r_{i-4},\dots,r_{i+4})
-</script>
-</p>
-<p>去噪后激光 RMSE 从 <strong>0.541 m</strong> 降到 <strong>0.026 m</strong>，显著减少建图"鬼影"。</p>
-<h3 id="35-slam">3.5 SLAM 与导航</h3>
-<p>占据栅格用对数几率表示（命中 +0.85、穿越 −0.40，钳制 ±4）：</p>
+因此在无显卡虚拟机上数据完全一致；IMU 与里程计由 <code>qpos/qvel</code> 直接导出，带可控噪声。</p>
+<h2 id="4">4. 计算原理</h2>
+<h3 id="41-slam">4.1 SLAM：对数几率栅格与扫描匹配</h3>
 <p>
 <script type="math/tex; mode=display">
 l_t=\mathrm{clip}(l_{t-1}+\Delta l,-4,4),\qquad p=\frac{1}{1+e^{-l}}
 </script>
 </p>
-<p>扫描匹配在里程计预测位姿附近搜索 <script type="math/tex">(\Delta x,\Delta y,\Delta\theta)</script>，使命中点落在已知占据
-栅格上的得分最大（±0.12 m / ±0.12 rad，粗到细两级，单帧 3–8 ms）。全局规划为 8 邻域 A*，
-按 0.30 m 膨胀障碍物；控制器为纯跟踪：</p>
+<p>命中 +0.85、穿越 −0.40，钳制 ±4。扫描匹配在里程计预测位姿附近搜索
+<script type="math/tex">(\Delta x,\Delta y,\Delta\theta)</script>，使命中点落在已知占据栅格上的得分最大
+（±0.12 m / ±0.12 rad，粗到细两级，单帧 3–8 ms）。</p>
+<h3 id="42">4.2 规划与纯跟踪</h3>
+<p>全局规划为 8 邻域 A*，按 0.30 m 膨胀障碍物；控制器为纯跟踪：</p>
 <p>
 <script type="math/tex; mode=display">
 \varepsilon=\operatorname{atan2}(\sin(\psi_k-\psi),\cos(\psi_k-\psi)),\quad
-\omega=\mathrm{clip}(k_\theta\varepsilon,-\omega_{max},\omega_{max})
+\omega=\mathrm{clip}(k_\theta\varepsilon,-\omega_{max},\omega_{max}),
+\qquad v=v_{max}\Big(1-\frac{|\varepsilon|}{1.4}\Big)
 </script>
 </p>
-<h3 id="36">3.6 神经网络</h3>
+<h3 id="43">4.3 四个神经网络</h3>
 <table>
 <thead>
 <tr>
@@ -570,7 +603,7 @@ l_t=\mathrm{clip}(l_{t-1}+\Delta l,-4,4),\qquad p=\frac{1}{1+e^{-l}}
 <tr>
 <td>感知</td>
 <td>MLP 9-32-32-1</td>
-<td>9 线滑窗 → 中心距离</td>
+<td>9 条相邻射线滑窗 → 中心距离</td>
 <td>自监督（无噪扫描作标签）</td>
 </tr>
 <tr>
@@ -583,7 +616,7 @@ l_t=\mathrm{clip}(l_{t-1}+\Delta l,-4,4),\qquad p=\frac{1}{1+e^{-l}}
 <tr>
 <td>控制</td>
 <td>MLP 6-64-64-2</td>
-<td>目标距离/航向误差/三向净空/上一速度 → <script type="math/tex">(v,\omega)</script>
+<td>目标距离 / 航向误差 / 三向净空 / 上一速度 → <script type="math/tex">(v,\omega)</script>
 </td>
 <td>克隆纯跟踪</td>
 </tr>
@@ -596,9 +629,82 @@ l_t=\mathrm{clip}(l_{t-1}+\Delta l,-4,4),\qquad p=\frac{1}{1+e^{-l}}
 </tr>
 </tbody>
 </table>
-<p>全部为手写前向/反向传播 + Adam，<code>tests/test_nn.py</code> 用数值梯度校验（相对误差 <script type="math/tex">2.4\times10^{-12}</script>）。</p>
-<h2 id="_5">四、实验结果</h2>
-<p>三场景闭环（每场景一条 episode，目标 0.35 m 内视为成功）：</p>
+<p>感知网络的损失即逐点平方误差：</p>
+<p>
+<script type="math/tex; mode=display">
+\mathcal L=\frac1N\sum_i\big(\hat r_i-r_i\big)^2,\qquad
+\hat r_i=f_\theta(r_{i-4},\dots,r_{i+4})
+</script>
+</p>
+<p>全部网络为手写前向/反向传播 + Adam，<code>tests/test_nn.py</code> 用数值梯度校验
+（相对误差 <script type="math/tex">2.4\times10^{-12}</script>）。</p>
+<h2 id="5">5. 算法流程</h2>
+<h3 id="51">5.1 键盘遥控</h3>
+<div class="mermaid">flowchart LR
+    A[终端按键] --&gt; B[机身速度指令 v, ω]
+    B --&gt; C[/话题 /cmd_vel/]
+    C --&gt; D[步态层: 相位 + 落脚点]
+    D --&gt; E[解析 IK -&gt; 12 个关节角]
+    E --&gt; F[MuJoCo mj_step x5]
+    F --&gt; G[/话题 /humanoid/state/]
+</div>
+<h3 id="52">5.2 建图导航</h3>
+<div class="mermaid">flowchart TD
+    A[/话题 /scan/] --&gt; B[感知网络去噪]
+    B --&gt; C[扫描匹配定位]
+    C --&gt; D[对数几率栅格建图]
+    D --&gt; E[A* 全局规划]
+    E --&gt; F[纯跟踪 -&gt; v, ω]
+    F --&gt; G[步态层 + IK]
+    G --&gt; H[/话题 /cmd_vel/]
+    H --&gt; A
+</div>
+<h3 id="53">5.3 端到端驾驶</h3>
+<div class="mermaid">flowchart LR
+    A[/话题 /camera/depth/] --&gt; B[CNN 前向]
+    B --&gt; C[v, ω 低通]
+    C --&gt; D[/话题 /cmd_vel/]
+    D --&gt; E[步态层 -&gt; 仿真]
+</div>
+<h2 id="6">6. 仿真步骤（含截图）</h2>
+<p>每个新终端都要先
+<code>source /opt/ros/noetic/setup.bash &amp;&amp; source ~/humanoid_ws/devel/setup.bash</code>。</p>
+<h3 id="61-ros">6.1 无 ROS 快速验证</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/humanoid_ws/src/humanoid_mujoco_slam_nn_nav
+python3<span class="w"> </span>main.py<span class="w"> </span>--mode<span class="w"> </span><span class="nb">test</span><span class="w">          </span><span class="c1"># IK / 建图 / 规划 / 网络，4/4 通过</span>
+python3<span class="w"> </span>main.py<span class="w"> </span>--mode<span class="w"> </span><span class="nb">eval</span><span class="w">          </span><span class="c1"># 三场景 × 三策略 -&gt; results/benchmark.json</span>
+python3<span class="w"> </span>main.py<span class="w"> </span>--mode<span class="w"> </span>train<span class="w">         </span><span class="c1"># 重新训练四个网络（可选）</span>
+</code></pre></div>
+<h3 id="62-ros-1">6.2 ROS 键盘遥控（任务 1）</h3>
+<div class="highlight"><pre><span></span><code>roslaunch<span class="w"> </span>humanoid_mujoco_slam_nn_nav<span class="w"> </span>teleop.launch<span class="w"> </span>scene:<span class="o">=</span>warehouse
+</code></pre></div>
+<p>弹出键盘窗口后：<code>W/S</code> 前进后退、<code>A/D</code> 左转右转、<code>Q/E</code> 原地转、<code>空格</code> 急停、<code>R</code> 重置。
+无图形界面时加 <code>terminal:=false</code>，再另开终端
+<code>rosrun humanoid_mujoco_slam_nn_nav teleop_node.py</code>。</p>
+<p><img alt="键盘遥控" src="../../img/humanoid_mujoco_slam_nn_nav_teleop.gif"/></p>
+<h3 id="63-ros-2-3">6.3 ROS 建图导航（任务 2 / 3）</h3>
+<div class="highlight"><pre><span></span><code>roslaunch<span class="w"> </span>humanoid_mujoco_slam_nn_nav<span class="w"> </span>slam_nav.launch<span class="w"> </span>scene:<span class="o">=</span>warehouse
+<span class="c1"># 换场景：scene:=obstacle_field / corridor；换目标：goal_x:=2.0 goal_y:=0.0</span>
+</code></pre></div>
+<p>另开终端观察：</p>
+<div class="highlight"><pre><span></span><code>rostopic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/nav_status<span class="w">          </span><span class="c1"># walk / settle / blocked / done</span>
+rostopic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-n1<span class="w"> </span>/humanoid/slam_pose
+rviz<span class="w">                               </span><span class="c1"># 添加 Map(/map) 与 Path(/plan)，Fixed Frame 选 map</span>
+</code></pre></div>
+<p><img alt="SLAM 建图与导航" src="../../img/humanoid_mujoco_slam_nn_nav.gif"/></p>
+<h3 id="64-ros-4">6.4 ROS 端到端驾驶（任务 4）</h3>
+<div class="highlight"><pre><span></span><code>roslaunch<span class="w"> </span>humanoid_mujoco_slam_nn_nav<span class="w"> </span>e2e.launch<span class="w"> </span>scene:<span class="o">=</span>corridor
+</code></pre></div>
+<p><img alt="端到端 CNN 驾驶" src="../../img/humanoid_mujoco_slam_nn_nav_e2e.gif"/></p>
+<h3 id="65">6.5 单元测试与批量评测</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/humanoid_ws/src/humanoid_mujoco_slam_nn_nav
+<span class="nv">PYTHONPATH</span><span class="o">=</span>.<span class="w"> </span>python3<span class="w"> </span>tests/run_all.py<span class="w">    </span><span class="c1"># 4 个测试模块</span>
+<span class="nv">PYTHONPATH</span><span class="o">=</span>.<span class="w"> </span>python3<span class="w"> </span>tools/evaluate.py<span class="w">   </span><span class="c1"># 三场景 × 三策略</span>
+</code></pre></div>
+<h2 id="7">7. 多场景测试与性能评价</h2>
+<p>三个场景共用一副身体，只替换障碍物布局：<code>warehouse</code>（立柱 + 货架）、
+<code>obstacle_field</code>（梅花桩）、<code>corridor</code>（错位门洞）。目标 0.35 m 内视为成功，每场景一条 episode。</p>
+<h3 id="71">7.1 闭环结果</h3>
 <table>
 <thead>
 <tr>
@@ -616,7 +722,7 @@ l_t=\mathrm{clip}(l_{t-1}+\Delta l,-4,4),\qquad p=\frac{1}{1+e^{-l}}
 <td>✅ 48.4 s / 0.348 m / 0.035</td>
 </tr>
 <tr>
-<td>神经规划+控制</td>
+<td>神经规划 + 控制</td>
 <td>❌ 跌倒</td>
 <td>❌ 超时</td>
 <td>❌ 跌倒</td>
@@ -629,10 +735,11 @@ l_t=\mathrm{clip}(l_{t-1}+\Delta l,-4,4),\qquad p=\frac{1}{1+e^{-l}}
 </tr>
 </tbody>
 </table>
+<h3 id="72">7.2 离线指标</h3>
 <table>
 <thead>
 <tr>
-<th>离线指标</th>
+<th>指标</th>
 <th>结果</th>
 </tr>
 </thead>
@@ -655,36 +762,84 @@ l_t=\mathrm{clip}(l_{t-1}+\Delta l,-4,4),\qquad p=\frac{1}{1+e^{-l}}
 </tr>
 </tbody>
 </table>
-<p><strong>失败分析</strong>：双足步态对速度指令突变非常敏感，行为克隆网络的 ω 逐帧抖动约为纯跟踪的 3 倍，
-把网络输出直接接到步态层时会累积侧向失稳；加入低通与最小步频后跌倒时间从 8 s 推迟到 60 s 量级，
-但仍不如经典栈稳定。这也是本包保留 A* 作为安全回退的原因。</p>
-<h2 id="_6">五、常见报错与解决方法</h2>
-<h3 id="1-modulenotfounderror-no-module-named-mujoco">1. <code>ModuleNotFoundError: No module named 'mujoco'</code></h3>
-<p>未安装或在错误的 Python 环境。执行 <code>pip3 install --user "mujoco&gt;=3.1,&lt;3.3"</code>，
-并确认 <code>python3 -c "import mujoco"</code> 通过。</p>
-<h3 id="2-package-humanoid_mujoco_slam_nn_nav-not-found">2. <code>Package 'humanoid_mujoco_slam_nn_nav' not found</code></h3>
-<p>没有 <code>source ~/humanoid_ws/devel/setup.bash</code>，或包没有放在 <code>~/humanoid_ws/src</code> 下。</p>
-<h3 id="3">3. 键盘窗口没反应</h3>
-<p><code>teleop.launch</code> 默认用 <code>xterm</code> 启动键盘节点，需要窗口焦点；SSH 场景用
-<code>terminal:=false</code> 后手动 <code>rosrun humanoid_mujoco_slam_nn_nav teleop_node.py</code>。</p>
-<h3 id="4-nav_status-settle">4. 机器人原地踏步、<code>/nav_status</code> 显示 <code>settle</code></h3>
-<p>这是每 9 s 的主动重平衡（抑制姿态误差累积），属正常现象，约 1.4 s 后恢复 <code>walk</code>。</p>
-<h3 id="5-blocked">5. 导航一直 <code>blocked</code></h3>
-<p>地图尚未建立（起点被膨胀层包住）。等 1–2 s 即可，或把 <code>~inflation</code> 从 0.30 降到 0.22。</p>
-<h3 id="6-gif">6. 虚拟机里录 GIF 黑屏</h3>
-<p>本项目 GIF 用 MuJoCo 离屏渲染，不需要显示器；若黑屏，检查是否在 <code>mj_forward</code> 之后创建渲染器
-（<code>sim.py</code> 已做延迟创建）。</p>
-<h2 id="_7">六、扩展方向</h2>
+<h3 id="73">7.3 单项性能</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>站立 5 s 骨盆漂移</td>
+<td>&lt; 3 mm</td>
+</tr>
+<tr>
+<td>连续行走</td>
+<td>60 s / 5.2 m 无跌倒</td>
+</tr>
+<tr>
+<td>SLAM ATE（三场景）</td>
+<td>0.026 – 0.040 m</td>
+</tr>
+<tr>
+<td>建图覆盖率</td>
+<td>0.62 – 0.71</td>
+</tr>
+</tbody>
+</table>
+<h3 id="74">7.4 失败分析</h3>
+<p>双足步态对速度指令突变非常敏感，行为克隆网络的 ω 逐帧抖动约为纯跟踪的 3 倍，
+把网络输出直接接到步态层时会累积侧向失稳；加入低通与最小步频后跌倒时间从 8 s
+推迟到 60 s 量级，但仍不如经典栈稳定。这也是本包保留 A* 作为安全回退的原因。</p>
+<h2 id="8">8. 常见问题与限制</h2>
+<h3 id="81">8.1 常见报错</h3>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>原因与处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ModuleNotFoundError: No module named 'mujoco'</code></td>
+<td>未安装或环境不对：<code>pip3 install --user "mujoco&gt;=3.1,&lt;3.3"</code>，确认 <code>python3 -c "import mujoco"</code></td>
+</tr>
+<tr>
+<td><code>Package 'humanoid_mujoco_slam_nn_nav' not found</code></td>
+<td>没有 <code>source devel/setup.bash</code>，或包不在 <code>~/humanoid_ws/src</code> 下</td>
+</tr>
+<tr>
+<td>键盘窗口没反应</td>
+<td><code>teleop.launch</code> 用 <code>xterm</code> 弹窗，需要窗口焦点；SSH 用 <code>terminal:=false</code> 后手动 <code>rosrun</code></td>
+</tr>
+<tr>
+<td>原地踏步、<code>/nav_status</code> 显示 <code>settle</code></td>
+<td>每 9 s 的主动重平衡，属正常现象，约 1.4 s 后恢复 <code>walk</code></td>
+</tr>
+<tr>
+<td>导航一直 <code>blocked</code></td>
+<td>地图未建立（起点被膨胀层包住），等 1–2 s，或把 <code>~inflation</code> 从 0.30 降到 0.22</td>
+</tr>
+<tr>
+<td>虚拟机里录 GIF 黑屏</td>
+<td>GIF 用离屏渲染，不需要显示器；渲染器必须在 <code>mj_forward</code> 之后创建（<code>sim.py</code> 已延迟创建）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="82">8.2 已知限制与扩展方向</h3>
 <ul>
-<li>转向步态：给髋 yaw 增加按 <script type="math/tex">\Delta\psi</script> 旋转落脚点的规划，解决连续转弯失稳；</li>
-<li>用 DAgger 补充端到端数据，并引入占据栅格辅助监督；</li>
-<li>把步态替换为学习型策略（PPO），与本包的准静态步态做对比。</li>
+<li><strong>转向步态缺失</strong>：给髋 yaw 增加按 <script type="math/tex">\Delta\psi</script> 旋转落脚点的规划，解决连续转弯失稳；</li>
+<li><strong>端到端数据不足</strong>：用 DAgger 补充数据，并引入占据栅格辅助监督；</li>
+<li><strong>步态可学习化</strong>：把准静态步态替换为 PPO 策略，与本包结果做对比。</li>
 </ul></div>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
-<a class="btn btn-neutral float-left" href="../../musculoskeletal/muscle_joint_control/" title="肌肉驱动的关节控制与 Hill 肌肉模型"><span class="icon icon-circle-arrow-left"></span> 前一页</a>
-<a class="btn btn-neutral float-right" href="../../set_up_and_connect_to_carla/" title="手动控制">后一页 <span class="icon icon-circle-arrow-right"></span></a>
+<a class="btn btn-neutral float-left" href="../whole_body_ik/" title="人形机器人全身逆运动学与可操作性"><span class="icon icon-circle-arrow-left"></span> 前一页</a>
+<a class="btn btn-neutral float-right" href="../../musculoskeletal/musculoskeletal_basics/" title="肌肉骨骼人基础">后一页 <span class="icon icon-circle-arrow-right"></span></a>
 </div>
 <hr/>
 <div role="contentinfo">
@@ -701,8 +856,8 @@ l_t=\mathrm{clip}(l_{t-1}+\Delta l,-4,4),\qquad p=\frac{1}{1+e^{-l}}
 <span>
 <a href="https://github.com/OpenHUTB/ros2" style="color: #fcfcfc">OpenHUTB</a>
 </span>
-<span><a href="../../musculoskeletal/muscle_joint_control/" style="color: #fcfcfc">« 前一页</a></span>
-<span><a href="../../set_up_and_connect_to_carla/" style="color: #fcfcfc">后一页 »</a></span>
+<span><a href="../whole_body_ik/" style="color: #fcfcfc">« 前一页</a></span>
+<span><a href="../../musculoskeletal/musculoskeletal_basics/" style="color: #fcfcfc">后一页 »</a></span>
 </span>
 </div>
 <script src="../../js/jquery-3.6.0.min.js"></script>
@@ -722,5 +877,5 @@ l_t=\mathrm{clip}(l_{t-1}+\Delta l,-4,4),\qquad p=\frac{1}{1+e^{-l}}
             SphinxRtdTheme.Navigation.enable(true);
         });
     </script>
-</body>
+<script>mermaid.initialize({});</script></body>
 </html>
