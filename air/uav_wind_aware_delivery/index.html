@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>四旋翼风扰下物资精准空投（MuJoCo） - 模拟器的 ROS 文档</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u56db\u65cb\u7ffc\u98ce\u6270\u4e0b\u7269\u8d44\u7cbe\u51c6\u7a7a\u6295\uff08MuJoCo\uff09";
+        var mkdocs_page_input_path = "air/uav_wind_aware_delivery.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 模拟器的 ROS 文档
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="搜索文档" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">入门</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">首页</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ubuntu20.04/">安装 ROS</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">ROS 教程</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter/turtle_square/">1. 认识 ROS：小海龟画正方形</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter/chap2/">2. ROS 基础 - ROS 基础</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter/chap3/">3. 机器人系统设计</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter/chap4/">4. 机器人仿真</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter/chap5/">5. 机器人感知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter/chap6/">6. 机器人 SLAM 与自主导航</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter/chap7/">7. 机械臂控制</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter/chap8/">8. ROS 机器人综合应用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter/chap9/">9. ROS 2</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">地面载具</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../set_up_and_connect_to_carla/">手动控制</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ground/carla_spawn_objects/">生成对象</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ground/ackermann_control/">阿克曼控制</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ground/waypoint/">路径点发布器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ground/ad_agent/">自动驾驶代理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ground/ad_demo/">自动驾驶示例</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ground/ros_scenario_runner/">ROS Scenario Runner</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../ground/twist_to_control.md">扭转控制</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ground/rviz_plugin/">RVIZ Carla 插件</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">空域载具</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">四旋翼风扰下物资精准空投（MuJoCo）</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">与仓库已有空域模块的区别</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">项目结构</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">一、环境准备</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">二、启动流程</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1">1. 完整空投演示（推荐）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-ssh">2. 无窗口（SSH/评测）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3">3. 键盘手动控制</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4">4. 统一入口</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ros">三、ROS 接口</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">四、方法</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1_1">1. 吊挂与释放</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-mlp">2. 落点预测 MLP</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3_1">3. 释放点补偿</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">五、实测结果</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#2-000">预测器（验证集 2 000 组）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#10-05-m">闭环空投（10 组随机风，成功半径 0.5 m）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">复现</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ubuntu">六、Ubuntu 桌面实操视频</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">七、常见报错</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-modulenotfounderror-no-module-named-mujoco">1. ModuleNotFoundError: No module named 'mujoco'</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-ros_distro-unbound-variable">2. ROS_DISTRO: unbound variable</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-viewer">3. Viewer 不显示</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-catkin_make">4. catkin_make 找不到包</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5">5. 释放后物资不落地</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_9">八、验证范围与限制</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_10">九、源码与许可</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../setup_and_connect/">建立虚拟机和空域载具之间的连接</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ros_pkgs/">空域模拟器的 ROS 封装器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://openhutb.github.io/air_doc/airsim_tutorial_pkgs/">低空载具的 ROS 示例教程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">水域载具</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../water/HoloOcean/">水域载具 ROS2 接口</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">模拟器的 ROS 文档</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">空域载具</li>
+      <li class="breadcrumb-item active">四旋翼风扰下物资精准空投（MuJoCo）</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/OpenHUTB/template/edit/master/docs/air/uav_wind_aware_delivery.md"> 编辑页面</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="mujoco">四旋翼风扰下物资精准空投：MuJoCo 仿真与神经网络落点预测</h1>
+<p>基于 <strong>ROS Noetic + MuJoCo 3.12.0</strong> 的四旋翼空投模块：无人机吊挂物资起飞，在侧风下计算补偿后的释放点；释放后物资自由落体并受风阻力，最终落入目标区。模块包含 MuJoCo 吊挂/释放模型、几何控制器、弹道积分器、纯 NumPy 落点预测 MLP、任务状态机、ROS 节点和 OpenCV 桌面可视化。</p>
+<p><img alt="四旋翼风扰物资空投演示" src="../../img/air/uav_wind_aware_delivery.gif"></p>
+<h2 id="_1">与仓库已有空域模块的区别</h2>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>关注点</th>
+<th>物资释放/落点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>payload_mass_estimation</code></td>
+<td>从飞行数据估计载荷质量</td>
+<td>否</td>
+</tr>
+<tr>
+<td><code>landing_assessment</code></td>
+<td>着陆阶段识别与接地载荷</td>
+<td>否</td>
+</tr>
+<tr>
+<td><code>rooftop_landing</code> / <code>rooftop_landing_nn</code></td>
+<td>屋顶降落点选择</td>
+<td>否</td>
+</tr>
+<tr>
+<td><code>uav_mujoco_sim</code></td>
+<td>四旋翼仿真底座</td>
+<td>否</td>
+</tr>
+<tr>
+<td><strong>本模块</strong></td>
+<td><strong>风扰下释放点补偿 + NN 落点预测</strong></td>
+<td><strong>是</strong></td>
+</tr>
+</tbody>
+</table>
+<p>本项目把“吊挂 → 释放 → 自由落体 → 落点误差”串成可评估闭环：网络预测“如果现在释放会落在哪里”，任务层据此把释放点向上风方向平移。</p>
+<h2 id="_2">项目结构</h2>
+<div class="highlight"><pre><span></span><code>uav_wind_aware_delivery/
+├── main.py / main.sh                 统一入口
+├── package.xml / CMakeLists.txt      ROS1 catkin 包
+├── models/
+│   ├── uav_delivery.xml              MuJoCo 四旋翼 + 吊挂物资
+│   └── impact_mlp.npz                训练好的落点 MLP
+├── src/uav_wind_aware_delivery/
+│   ├── sim.py                        MuJoCo 推进、weld、释放、风阻力
+│   ├── control.py                    PID + 几何姿态控制
+│   ├── ballistics.py                 弹道积分与释放点迭代
+│   ├── nn.py                         纯 NumPy MLP + Adam
+│   ├── mission.py                    起飞/巡航/对准/释放/落地状态机
+│   ├── state.py                      28 维 ROS 状态向量
+│   ├── mathutil.py                   四元数/欧拉角
+│   └── viz.py                        OpenCV 俯视 + 侧视 + HUD
+├── scripts/nodes/                    6 个 ROS 节点
+├── launch/                           demo / headless / teleop
+├── tools/                            训练、评估、单集调试、录制
+├── tests/run_all.py                  15 个单元测试
+├── results/                          benchmark / predictor 指标
+└── media/ubuntu_air_demo.mp4         Ubuntu 桌面实操视频
+</code></pre></div>
+<h2 id="_3">一、环境准备</h2>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ubuntu</td>
+<td>20.04.6 LTS（VMware）</td>
+</tr>
+<tr>
+<td>ROS</td>
+<td>Noetic（<code>/opt/ros/noetic</code>）</td>
+</tr>
+<tr>
+<td>Python（计算节点）</td>
+<td>3.11，项目内 <code>.venv</code></td>
+</tr>
+<tr>
+<td>MuJoCo</td>
+<td>3.12.0</td>
+</tr>
+<tr>
+<td>NumPy</td>
+<td>1.26.4</td>
+</tr>
+<tr>
+<td>OpenCV</td>
+<td>4.2（系统 Python，仅 Viewer）</td>
+</tr>
+</tbody>
+</table>
+<p>MuJoCo 3.12 要求 Python ≥ 3.10，而 Ubuntu 20.04 系统 Python 是 3.8。因此 <code>roslaunch/roscore</code> 仍用系统 Python 3.8，仿真节点通过 <code>_bootstrap.use_venv()</code> 自动 exec 到项目 venv；Viewer 使用系统 Python 的 OpenCV。无需修改 <code>.bashrc</code>、PATH 或系统 Python 包。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 放入 catkin 工作区</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>~/air_ws/src
+cp<span class="w"> </span>-r<span class="w"> </span>&lt;仓库&gt;/src/air/uav_wind_aware_delivery<span class="w"> </span>~/air_ws/src/
+
+<span class="c1"># 2. Python 3.11 依赖（首次；已有可用 venv 可跳过）</span>
+<span class="nb">cd</span><span class="w"> </span>~/air_ws/src/uav_wind_aware_delivery
+bash<span class="w"> </span>scripts/setup_env.sh
+
+<span class="c1"># 3. 编译</span>
+<span class="nb">cd</span><span class="w"> </span>~/air_ws
+<span class="nb">source</span><span class="w"> </span>/opt/ros/noetic/setup.bash
+catkin_make<span class="w"> </span>-j2
+<span class="nb">source</span><span class="w"> </span>devel/setup.bash
+</code></pre></div>
+<p>如果 MuJoCo 的 venv 不在默认路径：</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">UAV_VENV_PYTHON</span><span class="o">=</span>/path/to/python3.11
+</code></pre></div>
+<h2 id="_4">二、启动流程</h2>
+<p>每个新终端先：</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/opt/ros/noetic/setup.bash
+<span class="nb">source</span><span class="w"> </span>~/air_ws/devel/setup.bash
+</code></pre></div>
+<h3 id="1">1. 完整空投演示（推荐）</h3>
+<div class="highlight"><pre><span></span><code>roslaunch<span class="w"> </span>uav_wind_aware_delivery<span class="w"> </span>demo.launch<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>wind_x:<span class="o">=</span><span class="m">3</span>.0<span class="w"> </span>wind_y:<span class="o">=</span><span class="m">1</span>.0<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>target_x:<span class="o">=</span><span class="m">5</span>.0<span class="w"> </span>target_y:<span class="o">=</span><span class="m">2</span>.0
+</code></pre></div>
+<p>会打开 OpenCV 窗口：</p>
+<ul>
+<li>左侧：俯视图（无人机、物资、目标区、风矢量、预测落点、轨迹）；</li>
+<li>右侧：侧视图（高度、吊挂、释放）；</li>
+<li>底部 HUD：<code>PHASE / ALT / WIND / PAYLOAD / IMPACT ERR</code>。</li>
+</ul>
+<p>任务流程：</p>
+<div class="highlight"><pre><span></span><code>takeoff → cruise → align → released → done
+</code></pre></div>
+<h3 id="2-ssh">2. 无窗口（SSH/评测）</h3>
+<div class="highlight"><pre><span></span><code>roslaunch<span class="w"> </span>uav_wind_aware_delivery<span class="w"> </span>headless.launch<span class="w"> </span>wind_x:<span class="o">=</span><span class="m">3</span>.0<span class="w"> </span>wind_y:<span class="o">=</span><span class="m">1</span>.0
+</code></pre></div>
+<h3 id="3">3. 键盘手动控制</h3>
+<div class="highlight"><pre><span></span><code>roslaunch<span class="w"> </span>uav_wind_aware_delivery<span class="w"> </span>teleop.launch
+</code></pre></div>
+<p><code>W/S</code> 前后、<code>A/D</code> 左右、<code>R/F</code> 升降、<code>Q</code> 退出。手动模式只检查控制链路，不自动释放。</p>
+<h3 id="4">4. 统一入口</h3>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>main.py<span class="w"> </span>--info
+python3<span class="w"> </span>main.py<span class="w"> </span>--launch<span class="w"> </span>demo<span class="w"> </span>--wind-x<span class="w"> </span><span class="m">3</span>.0<span class="w"> </span>--wind-y<span class="w"> </span><span class="m">1</span>.0
+python3<span class="w"> </span>main.py<span class="w"> </span>--test
+python3<span class="w"> </span>main.py<span class="w"> </span>--train
+python3<span class="w"> </span>main.py<span class="w"> </span>--evaluate
+</code></pre></div>
+<h2 id="ros">三、ROS 接口</h2>
+<table>
+<thead>
+<tr>
+<th>话题</th>
+<th>类型</th>
+<th>方向</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/uav/state</code></td>
+<td><code>std_msgs/Float64MultiArray</code></td>
+<td>发布</td>
+<td>28 维状态</td>
+</tr>
+<tr>
+<td><code>/uav/cmd</code></td>
+<td><code>std_msgs/Float64MultiArray</code></td>
+<td>控制→仿真</td>
+<td>世界系合力 3 + 世界系力矩 3</td>
+</tr>
+<tr>
+<td><code>/uav/setpoint</code></td>
+<td><code>geometry_msgs/PoseStamped</code></td>
+<td>任务→控制</td>
+<td>位置设定点</td>
+</tr>
+<tr>
+<td><code>/uav/release</code></td>
+<td><code>std_msgs/Bool</code></td>
+<td>任务→仿真</td>
+<td>释放物资（只释放一次）</td>
+</tr>
+<tr>
+<td><code>/uav/predicted_impact</code></td>
+<td><code>geometry_msgs/PointStamped</code></td>
+<td>预测→Viewer</td>
+<td>当前状态释放的预测落点</td>
+</tr>
+<tr>
+<td><code>/uav/mission</code></td>
+<td><code>std_msgs/String</code></td>
+<td>任务→Viewer</td>
+<td>当前阶段</td>
+</tr>
+</tbody>
+</table>
+<p>28 维状态：</p>
+<div class="highlight"><pre><span></span><code>0      t
+1:4    UAV x,y,z
+4:8    quat w,x,y,z
+8:11   vx,vy,vz
+11:14  wx,wy,wz
+14:17  roll,pitch,yaw
+17:20  payload x,y,z
+20:23  payload vx,vy,vz
+23     released
+24     landed
+25     payload_contact
+26:28  wind x,y
+</code></pre></div>
+<h2 id="_5">四、方法</h2>
+<h3 id="1_1">1. 吊挂与释放</h3>
+<p>无人机与物资都是 MuJoCo 自由刚体，初始用 <code>&lt;weld&gt;</code> equality 把物资固定在机腹。<code>release()</code> 把 <code>data.eq_active[weld]</code> 置 0，物资保留释放瞬间速度，进入自由落体；风阻力：</p>
+<div class="highlight"><pre><span></span><code>a_xy = k_drag * (wind_xy - v_xy) / m
+a_z  = -g - 0.02 * v_z / m
+</code></pre></div>
+<h3 id="2-mlp">2. 落点预测 MLP</h3>
+<p>输入 6 维：<code>[release_height, vx, vy, vz, wind_x, wind_y]</code>；输出 2 维：相对释放点的落点偏移 <code>[dx,dy]</code>。网络为 <code>6-64-64-2</code> tanh MLP，输入/输出标准化，Adam 训练；6 000 组弹道积分样本，110 epochs。</p>
+<h3 id="3_1">3. 释放点补偿</h3>
+<p>目标点 <code>T=(5,2)</code>，释放高度 <code>h=3 m</code>。迭代：</p>
+<div class="highlight"><pre><span></span><code>rel ← T
+repeat 4:
+    off ← MLP(h, 0, 0, 0, wind)
+    rel ← T − off
+</code></pre></div>
+<p>无人机飞到 <code>rel</code> 上方，悬停稳定后释放。无补偿基线直接把释放点设为 <code>T</code>，风会把物资吹离目标。</p>
+<h2 id="_6">五、实测结果</h2>
+<h3 id="2-000">预测器（验证集 2 000 组）</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>验证 RMSE</td>
+<td><strong>0.0143 m</strong></td>
+</tr>
+<tr>
+<td>验证 MAE</td>
+<td>0.0109 m</td>
+</tr>
+<tr>
+<td>零偏移基线 RMSE</td>
+<td>0.8661 m</td>
+</tr>
+<tr>
+<td>相对零基线提升</td>
+<td><strong>98.35%</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="10-05-m">闭环空投（10 组随机风，成功半径 0.5 m）</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>成功率</th>
+<th>平均落点误差</th>
+<th>P90 误差</th>
+<th>平均完成时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NN 释放点补偿</strong></td>
+<td><strong>10/10（100%）</strong></td>
+<td><strong>0.1604 m</strong></td>
+<td><strong>0.2481 m</strong></td>
+<td>12.73 s</td>
+</tr>
+<tr>
+<td>不补偿（目标正上方释放）</td>
+<td>0/10（0%）</td>
+<td>1.0455 m</td>
+<td>1.3195 m</td>
+<td>12.59 s</td>
+</tr>
+</tbody>
+</table>
+<p>平均误差降低 <strong>84.7%</strong>。</p>
+<p>固定风 <code>(3.0, 1.0) m/s</code> 的 ROS 全链：</p>
+<div class="highlight"><pre><span></span><code>takeoff t=0.05 → cruise t=3.17 → align t=12.19
+released t=13.00 → done t=14.54
+payload landing error 0.13 m
+</code></pre></div>
+<p><img alt="落点与 HUD 截图" src="../../img/air/uav_wind_aware_delivery_poster.png"></p>
+<h3 id="_7">复现</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/air_ws/src/uav_wind_aware_delivery
+
+<span class="c1"># 训练（约 1 分钟，CPU）</span>
+.venv/bin/python<span class="w"> </span>tools/train_predictor.py
+
+<span class="c1"># 10 组随机风 × 2 方法</span>
+.venv/bin/python<span class="w"> </span>tools/evaluate.py
+
+<span class="c1"># 单元测试</span>
+.venv/bin/python<span class="w"> </span>tests/run_all.py<span class="w">     </span><span class="c1"># 15/15 OK</span>
+</code></pre></div>
+<p>结果写入 <code>results/benchmark.json</code>、<code>results/predictor_metrics.json</code>。</p>
+<h2 id="ubuntu">六、Ubuntu 桌面实操视频</h2>
+<ul>
+<li>视频：<code>media/ubuntu_air_demo.mp4</code></li>
+<li>规格：1280×796，15 fps，45 s，H.264</li>
+<li>内容：Ubuntu 桌面打开 OpenCV Viewer，展示起飞、巡航、对准、释放、落地与 HUD 误差。</li>
+</ul>
+<p>录制脚本：</p>
+<div class="highlight"><pre><span></span><code>bash<span class="w"> </span>scripts/record_demo.sh
+</code></pre></div>
+<p>使用 <code>ffmpeg -f x11grab</code> 录屏；需要桌面会话（<code>DISPLAY=:0</code>）。GIF 由视频裁剪 Viewer 区域生成，见 <code>docs/img/air/uav_wind_aware_delivery.gif</code>。</p>
+<h2 id="_8">七、常见报错</h2>
+<h3 id="1-modulenotfounderror-no-module-named-mujoco">1. <code>ModuleNotFoundError: No module named 'mujoco'</code></h3>
+<p>仿真节点没有切到 Python 3.11：</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">UAV_VENV_PYTHON</span><span class="o">=</span>/path/to/python3.11
+.venv/bin/python<span class="w"> </span>-c<span class="w"> </span><span class="s2">"import mujoco; print(mujoco.__version__)"</span>
+</code></pre></div>
+<h3 id="2-ros_distro-unbound-variable">2. <code>ROS_DISTRO: unbound variable</code></h3>
+<p>录制/启动脚本里不要用 <code>set -u</code> 去 source ROS 的 <code>setup.bash</code>。</p>
+<h3 id="3-viewer">3. Viewer 不显示</h3>
+<p>必须在 Ubuntu 桌面会话运行：</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span>:0
+<span class="nb">export</span><span class="w"> </span><span class="nv">XAUTHORITY</span><span class="o">=</span>/run/user/1000/gdm/Xauthority
+</code></pre></div>
+<p>仅 SSH 无桌面时用 <code>headless.launch</code>。</p>
+<h3 id="4-catkin_make">4. <code>catkin_make</code> 找不到包</h3>
+<p>确认 <code>src/air/uav_wind_aware_delivery/package.xml</code> 的 <code>&lt;name&gt;</code> 与目录一致，并先 <code>source /opt/ros/noetic/setup.bash</code>。</p>
+<h3 id="5">5. 释放后物资不落地</h3>
+<p>检查 <code>/uav/release</code> 是否发布、<code>data.eq_active</code> 是否置 0；可运行：</p>
+<div class="highlight"><pre><span></span><code>.venv/bin/python<span class="w"> </span>tools/check_episode.py<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<h2 id="_9">八、验证范围与限制</h2>
+<ul>
+<li>实测平台为 <strong>ROS Noetic</strong>，未在 ROS 2 Humble 验证。</li>
+<li>控制器为简化几何控制（直接施加世界系合力/力矩），没有实现四旋翼混控与电机动力学；重点是空投任务层，不宣称是飞控级模型。</li>
+<li>风场为水平常值风 + 线性阻力，没有阵风/湍流模型。</li>
+<li>闭环评估为 <strong>10 组随机风</strong>（仿真），不是硬件飞行；成功率对风场上界敏感。</li>
+<li>落点预测网络在训练分布内精度很高，超出 <code>|wind|&gt;5 m/s</code> 或释放高度范围时需重新训练。</li>
+<li>未做视觉目标检测；目标点由参数给定。</li>
+</ul>
+<h2 id="_10">九、源码与许可</h2>
+<p>源码：<code>src/air/uav_wind_aware_delivery/</code>。MIT License。</p>
+<div class="highlight"><pre><span></span><code>15 tests, failures=0, errors=0
+</code></pre></div></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../ground/rviz_plugin/" class="btn btn-neutral float-left" title="RVIZ Carla 插件"><span class="icon icon-circle-arrow-left"></span> 前一页</a>
+        <a href="../setup_and_connect/" class="btn btn-neutral float-right" title="建立虚拟机和空域载具之间的连接">后一页 <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>OpenHUTB 版权所有 &copy; 2026</p>
+  </div>
+
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/OpenHUTB/template" style="color: #fcfcfc">OpenHUTB</a>
+        </span>
+    
+    
+      <span><a href="../../ground/rviz_plugin/" style="color: #fcfcfc">&laquo; 前一页</a></span>
+    
+    
+      <span><a href="../setup_and_connect/" style="color: #fcfcfc">后一页 &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="https://cdn.rawgit.com/knsv/mermaid/6.0.0/dist/mermaid.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script>
+      <script src="../../js/umlconvert.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
