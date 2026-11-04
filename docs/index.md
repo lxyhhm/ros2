@@ -80,6 +80,7 @@ ROS每章节运行代码:
 * [人形机器人全身逆运动学与可操作性](./humanoid/whole_body_ik.md)
 * [人形机器人跌倒预判与保护性倒地](./humanoid/humanoid_fall_protection.md)
 * [人形机器人 3D 碰撞体边界检测可视化](./humanoid/humanoid_collision_boundary.md)
+* [人形机器人 MuJoCo 建图导航与神经网络控制](./humanoid/humanoid_mujoco_slam_nn_nav.md)
 
 ## 3. 肌肉骨骼人 <span id='musculoskeletal'></span>
 
@@ -228,6 +229,7 @@ ROS每章节运行代码:
 * [禁飞区检测模块](no_fly_zone_check/index.md)
 
 * [MuJoCo无人机幕墙定距扫描](air/mujoco_facade_capture/index.md)
+* [四旋翼无人机 MuJoCo 建图导航与神经网络控制](./air/aerial_mujoco_slam_nn_nav/README.md)
 
 ## 6. 水域载具  <span id='water_vehicle'></span>
 
@@ -260,5 +262,6 @@ ___
 如果对文档中的任何问题可以在 [本文档的源码仓库](https://github.com/OpenHUTB/ros2) 中的 [问题](https://github.com/OpenHUTB/ros2/issues) 页面讨论或者提交 [拉取请求](https://github.com/OpenHUTB/.github/blob/master/CONTRIBUTING.md) 直接修改文档。
 
 ___
+* [ROV 水下机器人 MuJoCo 建图导航与神经网络控制](./water/rov_mujoco_slam_nn_nav/README.md)
 
 ## 参考文献
