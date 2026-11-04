@@ -464,14 +464,14 @@ python3<span class="w"> </span>main.py<span class="w"> </span>--mode<span class=
 <p>ROV 质量 12.9 kg、排水体积 13.2 L，净浮力约 +3 N；阻力按各轴线性+二次项建模：</p>
 <p>
 <script type="math/tex; mode=display">
-m\dot{\mathbf v}=\mathbf T+\mathbf B-mg\hat z-\big(c\,\mathbf v+q\,\mathbf v|\mathbf v|\big),
-\qquad \mathbf B=\rho g V
+m\dot{\mathbf v}=\mathbf T+\mathbf B-mg\hat z-\left(c\mathbf v+q\mathbf v\left|\mathbf v\right|\right),
+\quad \mathbf B=\rho g V
 </script>
 </p>
 <p>控制器给推力并把浮力、重力、阻力作为前馈抵消：</p>
 <p>
 <script type="math/tex; mode=display">
-\mathbf T=m k_v(\mathbf v_{ref}-\mathbf v)+\big(c\mathbf v+q\mathbf v|\mathbf v|\big)-\mathbf B+mg\hat z
+\mathbf T=m k_v\left(\mathbf v_{ref}-\mathbf v\right)+\left(c\mathbf v+q\mathbf v\left|\mathbf v\right|\right)-\mathbf B+mg\hat z
 </script>
 </p>
 <p>闭环因此退化为一阶跟踪。姿态用 PD 保持水平、偏航跟踪指令。
